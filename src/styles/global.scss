@@ -1,3 +1,53 @@
-// h1 {
-//   color: red;
-// }
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  overflow-y: overlay;
+  width: 100% !important;
+}
+
+html {
+  background-color: #0b0a06;
+}
+// 颜色相关
+.main-color {
+  background-color: rgba(35, 35, 44, 1);
+}
+.two-color {
+  background-color: rgb(19, 19, 26);
+}
+.three-color {
+  background-color: rgb(69, 69, 88) !important;
+}
+// 按钮背景颜色
+.btn-bgc {
+  background-color: rgb(97, 147, 187);
+}
+// 字体颜色
+.main-font-color {
+  color: rgb(97, 147, 187);
+}
+
+// hover
+.common-hover {
+  transition: all 0.2s !important;
+}
+.common-hover:hover {
+  background-color: rgb(97, 147, 187) !important;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  text-decoration: none !important;
+}
+.display-none {
+  display: none;
+}

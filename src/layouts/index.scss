@@ -1,0 +1,15 @@
+.blog-box {
+  min-height: calc(100vh - 120px);
+  height: calc(100vh);
+  position: relative;
+  // background-image: url("../static//background-img/4.png");
+  background-position: center 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.header-box {
+  padding: 0 !important;
+  height: 60px !important;
+}
