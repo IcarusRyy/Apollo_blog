@@ -59,6 +59,6 @@ export const navArr = [
   { id: 2, name: "留言", to: "/msg" },
   { id: 3, name: "友链", to: "/link" },
   { id: 4, name: "作品", to: "/show" },
-  { id: 5, name: "建站", to: "/log" },
+  { id: 5, name: "历史", to: "/history" },
   { id: 6, name: "关于", to: "/about" },
 ]

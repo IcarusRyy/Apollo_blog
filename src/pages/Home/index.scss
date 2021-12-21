@@ -1,0 +1,23 @@
+.home-box {
+  .home-header {
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    user-select: none;
+    span {
+      text-shadow: 0 0 6px rgb(0, 0, 0);
+    }
+    .home-header-title {
+      font-size: 56px;
+      font-family: "yu400";
+      font-weight: 700;
+    }
+    .home-header-content {
+      font-size: 28px;
+      font-family: "yu100";
+    }
+  }
+}
