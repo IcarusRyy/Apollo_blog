@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react"
+import React, { FC, useCallback, useState } from "react"
 import { HomeOutlined, SettingOutlined } from "@ant-design/icons"
 import classnames from "classnames"
 import "./index.scss"
@@ -9,9 +9,13 @@ const secondNavArr = [
   { id: 1, name: "分类", to: "/classes" },
   { id: 2, name: "标签", to: "/tags" },
 ]
-const NavHeader = (props) => {
+interface NavHeaderPropsType {
+  handleClothes: () => void
+  isShowNav: boolean
+}
+const NavHeader: FC<NavHeaderPropsType> = (props) => {
   const [isShowDropDown, setIsShowDropDown] = useState(false)
-  const { handleClothes } = props
+  const { handleClothes, isShowNav } = props
   const history = useHistory()
   const handleDropDownEnter = useCallback(() => {
     setIsShowDropDown(true)
@@ -21,7 +25,7 @@ const NavHeader = (props) => {
   }, [isShowDropDown])
   return (
     <>
-      <div className="nav-pc main-color" id="nav-box">
+      <div className="nav-pc main-color" id={isShowNav ? "" : "hiddenNav"}>
         <div className="nav-content">
           <div
             className="home-btn common-hover"
@@ -35,18 +39,6 @@ const NavHeader = (props) => {
             onMouseLeave={handleDropDownLeave}
           >
             文章
-            {/* <div className="articels-second">
-              {secondNavArr.map((item) => (
-                <NavLink
-                  className="articels-second-item main-color common-hover"
-                  activeClassName="btn-bgc"
-                  to={item.to}
-                  key={item.id}
-                >
-                  {item.name}
-                </NavLink>
-              ))}
-            </div> */}
             <div
               className={classnames("articels-menu", {
                 "display-none": !isShowDropDown,
@@ -78,14 +70,14 @@ const NavHeader = (props) => {
               {item.name}
             </NavLink>
           ))}
-          <a
+          {/* <a
             className="admin-btn common-hover"
-            // href={blogAdminUrl}
+            href="www.baidu.com"
             target="_blank"
             rel="noreferrer"
           >
             <SettingOutlined />
-          </a>
+          </a> */}
           <div
             className="nav-clothes-btn common-hover main-color"
             onClick={handleClothes}
