@@ -1,9 +1,11 @@
 .layout-box {
   min-height: calc(100vh - 60px);
   // position: relative;
+  transition: 2s;
   height: calc(100vh);
   overflow: auto;
   animation-name: fadeIn;
+  // animation-fill-mode: forwards;
   animation-duration: 3000ms;
   background-position: center 0 !important;
   background-size: cover !important;
