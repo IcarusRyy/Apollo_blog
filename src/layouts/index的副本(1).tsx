@@ -13,46 +13,48 @@ import "antd/dist/antd.css"
 import Routes from "src/routes"
 const { Header, Footer, Content } = Layout
 const LayoutPage = (props) => {
+  // console.log(props, "props")
+  // const [imgNumber, setImgNumber] = useState(8);
   const [isShowNav, setIsShowNav] = useState<boolean>(true)
   const handleClothes = useCallback(() => {
-    // 获取layoutdom元素
-    const layout = document.getElementById("blog-box")
-    // 获取上一张背景图片的路径
-    const imgSrc = layout.style.backgroundImage.split("/")
-    // console.log(imgSrc, "上一张图片的路径")
-    // 确定上一张背景图片是哪一张
-    const preImgName = Number(imgSrc[imgSrc.length - 1].split(".")[0])
-    // 确定上一张背景图片的索引
-    let imgNumber = BACKGROUND_IMG.findIndex((item) => item.key === preImgName)
-    // console.log(preImgName, "上一张背景图片的名字")
-    // console.log(imgNumber, "上一张背景图片的索引")
-    const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    // 将上一张背景图片的索引过滤掉
-    const res = arr.filter((item) => item !== imgNumber)
-    // console.log(res, "过滤掉上一张图片索引的数组")
-    // 随机产生下一张背景图片的索引
-    const num = Math.floor(Math.random() * arr.length)
-    // console.log(res[num], "下一张背景图片的索引", num, "num")
-    // 如果产生的下一张背景图片索引和上一张背景图片索引相同 就再次调用
-    if (res[num] === imgNumber || num === res.length) {
-      // console.log("同")
-      handleClothes()
-    } else {
-      // 如果不是 则更改
-      let img = new Image()
-      img.src = BACKGROUND_IMG[res[num]]?.img
-      // 确定图片加载完成后再进行背景图片切换
-      img.onload = function () {
-        layout.style.backgroundImage = "url(" + img.src + ")"
+    let imgNumber = 8
+    // 从组件 直接.这个bibao()？
+    return function bibao() {
+      console.log(imgNumber, "上一张图片的索引")
+      const layout = document.getElementById("blog-box")
+      const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+      const res = arr.filter((item) => item !== imgNumber)
+      console.log(res, "过滤掉上一张图片的索引")
+      const num = Math.floor(Math.random() * arr.length)
+      console.log(num, "num")
+      if (res[num] === imgNumber || num === res.length) {
+        console.log("同")
+        handleClothes()
+      } else {
+        imgNumber = res[num]
+        // setImgNumber(res[num]);
+        let img = new Image()
+        img.src = BACKGROUND_IMG[res[num]].img
+        // 确定图片加载完成后再进行背景图片切换
+        img.onload = function () {
+          layout.style.backgroundImage = "url(" + img.src + ")"
+        }
       }
     }
   }, [])
+  const handleTest = useCallback(() => {
+    console.log("naaum")
+  }, [])
+  const throttleHandleTest = throttle(handleTest, 8000, {
+    leading: true,
+    trailing: false,
+  })
   //   {leading: true, trailing: false}：只在延时开始时调用
   // {leading: false, trailing: true}：默认情况，即在延时结束后才会调用函数
   // {leading: true, trailing: true}：在延时开始时就调用，延时结束后也会调用
   // deboucne 还有 cancel 方法，用于取消防抖动调用
 
-  const throttleHandleClothes = throttle(handleClothes, 2000, {
+  const throttleHandleClothes = throttle(handleClothes(), 2000, {
     leading: true,
     trailing: false,
   })
@@ -63,7 +65,9 @@ const LayoutPage = (props) => {
     console.log(scrollTop)
     if (scrollTop) {
       setIsShowNav(false)
+      // console.log("false")
     } else {
+      // console.log("true")
       setIsShowNav(true)
     }
     // 判断切换背景图片
@@ -78,7 +82,7 @@ const LayoutPage = (props) => {
     document
       .getElementById("blog-box")
       .addEventListener("scroll", throttledScrollHandle)
-    setInterval(throttleHandleClothes, 5000)
+    // }
   }, [])
   console.log("重新渲染")
 
@@ -98,6 +102,7 @@ const LayoutPage = (props) => {
             handleClothes={throttleHandleClothes}
           />
         </Header>
+        {/* <Button onClick={throttleHandleTest}>++</Button> */}
         <div className="blog-box">
           <Content className="content-box">
             <div className="content-center">
